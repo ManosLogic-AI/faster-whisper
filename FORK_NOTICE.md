@@ -22,8 +22,10 @@ Unchanged:
 - the declared dependencies, including `av`;
 - the bundled assets.
 
-The version is set to `1.2.1+lazyav.1` (a local version label) so the build
-cannot be mistaken for an upstream release.
+The version is set to `1.2.1.post1`, and every release on this fork is
+labelled as a build of this fork rather than an upstream release. (A `+label`
+local version is not used because GitHub release asset names cannot contain
+`+`, and pip reads the version from the wheel file name.)
 
 ## License
 
@@ -41,7 +43,8 @@ version.
 
 1. Start from the new upstream release tag.
 2. Re-apply the lazy-import change to `faster_whisper/audio.py`, and set the
-   version to `<upstream version>+lazyav.1`.
+   version to `<upstream version>.post1` (or the next unused `.postN` if the
+   same upstream version is patched again).
 3. Build the wheel in a clean environment and inspect its contents.
 4. Publish it as a new release with its SHA-256. Never overwrite an existing
    release.
