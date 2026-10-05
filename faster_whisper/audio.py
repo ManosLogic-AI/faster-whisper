@@ -12,7 +12,6 @@ import itertools
 
 from typing import BinaryIO, Union
 
-import av
 import numpy as np
 
 
@@ -34,6 +33,8 @@ def decode_audio(
       If `split_stereo` is enabled, the function returns a 2-tuple with the
       separated left and right channels.
     """
+    import av
+
     resampler = av.audio.resampler.AudioResampler(
         format="s16",
         layout="mono" if not split_stereo else "stereo",
@@ -77,6 +78,8 @@ def decode_audio(
 
 
 def _ignore_invalid_frames(frames):
+    import av
+
     iterator = iter(frames)
 
     while True:
@@ -89,6 +92,8 @@ def _ignore_invalid_frames(frames):
 
 
 def _group_frames(frames, num_samples=None):
+    import av
+
     fifo = av.audio.fifo.AudioFifo()
 
     for frame in frames:
